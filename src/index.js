@@ -1,20 +1,28 @@
 import React, { useContext, useReducer } from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
-import TodosContext from "./context";
+import { TodosStateContext, TodosDispatchContext } from "./context";
 import todosReducer from "./reducer";
 import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
 
 const App = () => {
-  const initialState = useContext(TodosContext);
+  // Read default context for initial state
+  const initialState = useContext(TodosStateContext);
+  // Pass initial state to reducer for first render
   const [state, dispatch] = useReducer(todosReducer, initialState);
 
   return (
-    <TodosContext.Provider value={{ state, dispatch }}>
-      <TodoForm />
-      <TodoList />
-    </TodosContext.Provider>
+    // Wrap all components that need to subscribe to todos context
+    // All subscribers/consumers will read current context on render
+    // All subscribers/consumers will rerender on value change
+
+    <TodosStateContext.Provider value={state}>
+      <TodosDispatchContext.Provider value={dispatch}>
+        <TodoForm />
+        <TodoList />
+      </TodosDispatchContext.Provider>
+    </TodosStateContext.Provider>
 
     //
   );

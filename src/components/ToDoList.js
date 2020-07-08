@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import TodosContext from "../context";
+import { TodosStateContext, TodosDispatchContext } from "../context";
 
 export default function TodoList() {
-  const { state, dispatch } = useContext(TodosContext);
+  const state = useContext(TodosStateContext);
+  const dispatch = useContext(TodosDispatchContext);
   const title =
     state.todos.length > 0 ? `${state.todos.length} Todos` : "Nothing To Do!";
 
