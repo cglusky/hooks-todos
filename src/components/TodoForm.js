@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect } from "react";
 import TodosContext from "../context";
 
 export default function TodoForm() {
+  // This form uses same input field for add and edit
+  // State is tracked closely to determine action based on add/update
   const [todo, setTodo] = useState("");
   const {
     state: { currentTodo = {} },

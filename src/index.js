@@ -1,20 +1,20 @@
 import React, { useContext, useReducer } from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
-import ToDosContext from "./context";
+import TodosContext from "./context";
 import todosReducer from "./reducer";
-import ToDoList from "./components/ToDoList";
+import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
 
 const App = () => {
-  const initialState = useContext(ToDosContext);
+  const initialState = useContext(TodosContext);
   const [state, dispatch] = useReducer(todosReducer, initialState);
 
   return (
-    <ToDosContext.Provider value={{ state, dispatch }}>
+    <TodosContext.Provider value={{ state, dispatch }}>
       <TodoForm />
-      <ToDoList />
-    </ToDosContext.Provider>
+      <TodoList />
+    </TodosContext.Provider>
 
     //
   );
